@@ -16,14 +16,14 @@ npx clawhub@latest install likeadmin-market-skills
 
 ## Configure
 
-Provide your tenant API origin and API key, then import them into the local credential store:
+Provide your tenant API origin and API key, then save them to the local credential store. This does not depend on the agent-specific installation directory:
 
 ```bash
 export LIKEADMIN_MARKET_BASE_URL="https://your-tenant-api-origin"
 export LIKEADMIN_MARKET_API_KEY="your-api-key"
-printf '%s\n%s\n' "$LIKEADMIN_MARKET_BASE_URL" "$LIKEADMIN_MARKET_API_KEY" | node scripts/api-client.mjs config import-lines
+node -e 'const fs=require("fs");const path=require("path");const dir=path.join(process.env.HOME,".likeadmin-market-skills");const file=path.join(dir,"credentials.json");fs.mkdirSync(dir,{recursive:true,mode:0o700});fs.chmodSync(dir,0o700);fs.writeFileSync(file,JSON.stringify({base_url:process.env.LIKEADMIN_MARKET_BASE_URL,api_key:process.env.LIKEADMIN_MARKET_API_KEY},null,2)+"\n",{mode:0o600});fs.chmodSync(file,0o600)'
 unset LIKEADMIN_MARKET_BASE_URL LIKEADMIN_MARKET_API_KEY
-node scripts/api-client.mjs config status
+test -f "$HOME/.likeadmin-market-skills/credentials.json" && echo "Credentials saved"
 ```
 
 Credentials are stored only in `~/.likeadmin-market-skills/credentials.json` with restrictive permissions. The skill never hardcodes a tenant URL or API key.
