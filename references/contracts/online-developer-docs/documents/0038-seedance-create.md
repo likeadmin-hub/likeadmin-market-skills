@@ -40,7 +40,7 @@ POST /api/v1/apps/seedance/create
 | --- | --- | --- | --- | --- | --- | --- |
 | `seed` | integer | 否 | — | — | — | 随机种子，可复现结果（若服务支持） |
 | `draft` | boolean | 否 | — | — | — | 是否草稿模式（若服务支持） |
-| `model` | string | 是 | — | `seedance-2-text-2-video` / `seedance-2-video-2-video` / `seedance-2-fast-text-2-video` / `seedance-2-fast-video-2-video` | `seedance-2-text-2-video` | 模型标识。推荐使用 seedance-2-text-2-video / seedance-2-video-2-video / seedance-2-fast-text-2-video / seedance-2-fast-video-2-video（平台自动映射为内部模型标识 ant-2-*）。也可直接传 ant-2-*。 |
+| `model` | string | 是 | — | `seedance-2-text-2-video` / `seedance-2-video-2-video` / `seedance-2-fast-text-2-video` / `seedance-2-fast-video-2-video` | `seedance-2-text-2-video` | 公开模型名称。请从下方模型清单中选择一个名称；输入是否包含视频决定选择文生/图生或视频编辑名称，追求速度时选择 Fast 名称。 |
 | `ratio` | string | 否 | `adaptive` | `16:9` / `4:3` / `1:1` / `3:4` / `9:16` / `21:9` / `adaptive` | `16:9` | 画面宽高比。adaptive 表示由模型根据输入自动选择 |
 | `tools` | array | 否 | — | — | `[{"type":"web_search"}]` | 可选工具（仅文生视频支持 web_search 联网搜索） |
 | `frames` | integer | 否 | — | — | — | 帧数相关参数（若服务支持） |
@@ -52,6 +52,19 @@ POST /api/v1/apps/seedance/create
 | `camera_fixed` | boolean | 否 | — | — | — | 是否固定机位（若服务支持） |
 | `service_tier` | string | 否 | — | — | — | 服务档位（若服务支持） |
 | `generate_audio` | boolean | 否 | `1` | — | `1` | 是否生成与画面同步的音频 |
+
+### 模型名称与使用场景
+
+请求体中的 `model` 只能使用下表的公开模型名称。模型类型、名称和适用场景一一对应：
+
+| 模型类型 | 模型名称 | 描述 |
+| --- | --- | --- |
+| Seedance 2.0 标准版 | `seedance-2-text-2-video` | 输入内容不包含视频，适合文生视频、图生视频、首尾帧生成 |
+| Seedance 2.0 标准版 | `seedance-2-video-2-video` | 输入内容包含视频，适合视频编辑、视频延长、视频参考 |
+| Seedance 2.0 快速版 | `seedance-2-fast-text-2-video` | 输入内容不包含视频，优先生成速度 |
+| Seedance 2.0 快速版 | `seedance-2-fast-video-2-video` | 输入内容包含视频，优先生成速度 |
+
+除上述 4 个公开模型名称外，不需要填写其他模型名称。
 
 ## 请求示例
 

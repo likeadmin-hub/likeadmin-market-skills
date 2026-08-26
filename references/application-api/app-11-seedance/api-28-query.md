@@ -14,7 +14,7 @@ existing_title: "Seedance 2.0 · 查询任务"
 
 # Seedance 2.0 · 查询任务
 
-按任务 ID 查询 Seedance 任务状态（直连网关）
+按任务 ID 查询 Seedance 任务执行状态
 
 <details>
 <summary>基本信息</summary>
@@ -50,7 +50,7 @@ GET /api/v1/apps/seedance/query
 
 | 参数 | 类型 | 必填 | 默认值 | 可选值 / 范围 | 示例 | 说明 |
 | --- | --- | --- | --- | --- | --- | --- |
-| `task_id` | string | 是 | — | — | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` | 服务返回的任务 ID（与创建接口响应 data.id 一致）。也可使用查询参数 id。 |
+| `task_id` | string | 是 | — | — | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` | 平台任务 ID（与创建接口响应中的 `task_id` 一致）。也可使用查询参数 id。 |
 
 ## 请求示例
 

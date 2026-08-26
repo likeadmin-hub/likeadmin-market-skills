@@ -2381,7 +2381,7 @@
       },
       "runtime": {
         "method": "POST",
-        "endpoint_path": "/ant/createAssetGroup",
+        "endpoint_path": "/api/v1/apps/seedance/createGroup",
         "call_type": 1,
         "params_schema": {
           "type": "object",
@@ -2452,7 +2452,7 @@
       },
       "runtime": {
         "method": "POST",
-        "endpoint_path": "/ant/createAsset",
+        "endpoint_path": "/api/v1/apps/seedance/createAsset",
         "call_type": 1,
         "params_schema": {
           "type": "object",
@@ -2466,7 +2466,7 @@
               "type": "string",
               "example": "https://your-domain.com/uploads/image.png",
               "required": "1",
-              "description": "素材公网可访问 URL；将由上游拉取并入库"
+              "description": "素材公网可访问 URL；平台服务会拉取并入库"
             },
             "Name": {
               "type": "string",
@@ -2532,7 +2532,7 @@
       },
       "runtime": {
         "method": "POST",
-        "endpoint_path": "/ant/getAsset",
+        "endpoint_path": "/api/v1/apps/seedance/getAsset",
         "call_type": 1,
         "params_schema": {
           "type": "object",
@@ -2591,7 +2591,7 @@
       },
       "runtime": {
         "method": "POST",
-        "endpoint_path": "/ant/updateAsset",
+        "endpoint_path": "/api/v1/apps/seedance/updateAsset",
         "call_type": 1,
         "params_schema": {
           "type": "object",
@@ -2654,7 +2654,7 @@
       },
       "runtime": {
         "method": "POST",
-        "endpoint_path": "/ant/deleteAsset",
+        "endpoint_path": "/api/v1/apps/seedance/deleteAsset",
         "call_type": 1,
         "params_schema": {
           "type": "object",
@@ -2714,7 +2714,7 @@
       },
       "runtime": {
         "method": "GET",
-        "endpoint_path": "/ant/query",
+        "endpoint_path": "/api/v1/apps/seedance/query",
         "call_type": 1,
         "params_schema": {
           "type": "object",
@@ -2725,7 +2725,7 @@
             "task_id": {
               "type": "string",
               "example": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-              "description": "上游返回的任务 ID（与创建接口响应 data.id 一致）。也可使用查询参数 id。"
+              "description": "平台任务 ID（与创建接口响应中的 task_id 一致）。也可使用查询参数 id。"
             }
           }
         },
@@ -2787,7 +2787,7 @@
             "model": {
               "type": "string",
               "example": "seedance-2-text-2-video",
-              "description": "模型标识。推荐使用 seedance-2-text-2-video / seedance-2-video-2-video / seedance-2-fast-text-2-video / seedance-2-fast-video-2-video（平台自动映射为上游 ant-2-*）。也可直接传 ant-2-*。"
+              "description": "公开模型名称。请从下方模型清单中选择一个名称；输入是否包含视频决定选择文生/图生或视频编辑名称，追求速度时选择 Fast 名称。"
             },
             "ratio": {
               "type": "string",
